@@ -13,6 +13,10 @@ const meta: Meta<typeof Layout> = {
       control: 'text',
       description: 'Содержимое страницы',
     },
+    menuItems: {
+      control: 'object',
+      description: 'Массив элементов меню для хедера',
+    },
   },
 };
 
@@ -21,6 +25,11 @@ type Story = StoryObj<typeof Layout>;
 
 export const Default: Story = {
   args: {
+    menuItems: [
+      { title: 'Главная', navTo: '#' },
+      { title: 'О нас', navTo: '#' },
+      { title: 'Контакты', navTo: '#' },
+    ],
     children: (
       <div style={{ padding: '40px 20px', maxWidth: '800px', margin: '0 auto' }}>
         <h1>Добро пожаловать!</h1>
@@ -32,6 +41,11 @@ export const Default: Story = {
 
 export const WithLongContent: Story = {
   args: {
+    menuItems: [
+      { title: 'Главная', navTo: '#' },
+      { title: 'О нас', navTo: '#' },
+      { title: 'Контакты', navTo: '#' },
+    ],
     children: (
       <div style={{ padding: '40px 20px', maxWidth: '800px', margin: '0 auto' }}>
         <h1>Содержимое страницы</h1>

@@ -7,12 +7,23 @@ const meta: Meta<typeof Header> = {
   parameters: {
     layout: 'fullscreen',
   },
-  argTypes: {},
+  argTypes: {
+    menuItems: {
+      control: 'object',
+      description: 'Массив элементов меню',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    menuItems: [
+      { title: 'Главная', navTo: '#' },
+      { title: 'О нас', navTo: '#' },
+      { title: 'Контакты', navTo: '#' },
+    ],
+  },
 };
