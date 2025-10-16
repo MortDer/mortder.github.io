@@ -14,7 +14,7 @@ const meta: Meta<typeof Layout> = {
       description: 'Содержимое страницы',
     },
     menuItems: {
-      control: 'object',
+      control: 'array',
       description: 'Массив элементов меню для хедера',
     },
   },

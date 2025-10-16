@@ -9,7 +9,7 @@ const meta: Meta<typeof Header> = {
   },
   argTypes: {
     menuItems: {
-      control: 'object',
+      control: 'array',
       description: 'Массив элементов меню',
     },
   },
