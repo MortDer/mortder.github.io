@@ -34,11 +34,4 @@ export const AllSizes: Story = {
       <Logo size="large" />
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Сравнение всех размеров логотипа.',
-      },
-    },
-  },
 };

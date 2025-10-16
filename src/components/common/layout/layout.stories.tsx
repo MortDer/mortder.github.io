@@ -132,11 +132,4 @@ export const WithLongContent: Story = {
       </div>
     ),
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Демонстрация Layout с длинным содержимым для проверки прилипающего хедера.',
-      },
-    },
-  },
 };
