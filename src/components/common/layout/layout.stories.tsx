@@ -9,7 +9,7 @@ const meta: Meta<typeof Layout> = {
     layout: 'fullscreen',
   },
   argTypes: {
-    children: {
+    mainContent: {
       control: 'text',
       description: 'Содержимое страницы',
     },
@@ -30,7 +30,7 @@ export const Default: Story = {
       { title: 'О нас', navTo: '#' },
       { title: 'Контакты', navTo: '#' },
     ],
-    children: (
+    mainContent: (
       <div style={{ padding: '40px 20px', maxWidth: '800px', margin: '0 auto' }}>
         <h1>Добро пожаловать!</h1>
         <p>Это основное содержимое страницы внутри Layout компонента.</p>
@@ -46,7 +46,7 @@ export const WithLongContent: Story = {
       { title: 'О нас', navTo: '#' },
       { title: 'Контакты', navTo: '#' },
     ],
-    children: (
+    mainContent: (
       <div style={{ padding: '40px 20px', maxWidth: '800px', margin: '0 auto' }}>
         <h1>Содержимое страницы</h1>
         <p>
