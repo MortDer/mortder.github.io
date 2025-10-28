@@ -58,13 +58,13 @@
 import { v4 as uuidv4 } from 'uuid';
 import { faker } from '@faker-js/faker';
 
-type Category = {
+export type Category = {
   id: string;
   name: string;
   photo?: string;
 };
 
-type Product = {
+export type Product = {
   id: string;
   name: string;
   photo: string;
@@ -75,7 +75,7 @@ type Product = {
   category: Category;
 };
 
-type Operation = {
+export type Operation = {
   id: string;
   name: string;
   desc?: string;
