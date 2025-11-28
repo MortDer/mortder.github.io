@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { CartItem } from './cart-item';
-import { createRandomProduct } from '../../../homeworks/ts1/3_write';
+import { CartItem } from './CartItem';
+import { createRandomProduct } from 'src/utils/product';
 
 const meta: Meta<typeof CartItem> = {
   title: 'Common/CartItem',

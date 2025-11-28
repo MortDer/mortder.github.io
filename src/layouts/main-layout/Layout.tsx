@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header, MenuItem } from '../header/header';
-import styles from './layout.module.css';
+import { Header, MenuItem } from '../../components/common/header/Header';
+import styles from './Layout.module.css';
 
 interface LayoutProps {
   mainContent: React.ReactNode;

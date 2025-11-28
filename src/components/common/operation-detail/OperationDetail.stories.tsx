@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { OperationDetail } from './operation-detail';
-import { createRandomOperation } from '../../../homeworks/ts1/3_write';
+import { OperationDetail } from './OperationDetail';
+import { createRandomOperation } from 'src/utils/operation';
 
 const meta: Meta<typeof OperationDetail> = {
   title: 'Common/OperationDetail',

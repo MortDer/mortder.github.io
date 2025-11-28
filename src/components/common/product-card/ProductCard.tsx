@@ -1,7 +1,7 @@
 import React from 'react';
-import { Product } from '../../../homeworks/ts1/3_write';
-import { AddToCart } from '../button/add-to-cart/add-to-cart';
-import styles from './product-card.module.css';
+import { Product } from 'src/utils/product';
+import { AddToCart } from '../button/add-to-cart/AddToCart';
+import styles from './ProductCard.module.css';
 
 export const ProductCard: React.FC<Product> = ({ name, desc, price, oldPrice, photo, category }) => {
   return (

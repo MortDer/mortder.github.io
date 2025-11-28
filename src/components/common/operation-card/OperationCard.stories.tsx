@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { OperationCard } from './operation-card';
-import { createRandomOperation } from '../../../homeworks/ts1/3_write';
+import { OperationCard } from './OperationCard';
+import { createRandomOperation } from 'src/utils/operation';
 
 const meta: Meta<typeof OperationCard> = {
   title: 'Common/OperationCard',

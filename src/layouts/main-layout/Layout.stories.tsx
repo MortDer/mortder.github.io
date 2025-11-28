@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Layout } from './layout';
+import { Layout } from './Layout';
 
 const meta: Meta<typeof Layout> = {
   title: 'Common/Layout',

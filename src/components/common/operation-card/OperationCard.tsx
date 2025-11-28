@@ -1,6 +1,6 @@
 import React from 'react';
-import { Operation } from 'src/homeworks/ts1/3_write';
-import styles from './operation-card.module.css';
+import { Operation } from 'src/utils/operation';
+import styles from './OperationCard.module.css';
 
 export const OperationCard: React.FC<Operation> = ({ name, desc, amount, category, type }) => {
   const truncateDescription = (text: string, maxLength = 50) => {

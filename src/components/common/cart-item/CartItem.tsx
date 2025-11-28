@@ -1,6 +1,6 @@
 import React from 'react';
-import { Product } from '../../../homeworks/ts1/3_write';
-import styles from './cart-item.module.css';
+import { Product } from 'src/utils/product';
+import styles from './CartItem.module.css';
 
 interface CartItemProps extends Product {
   onRemove?: () => void;

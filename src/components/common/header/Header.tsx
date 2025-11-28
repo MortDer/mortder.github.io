@@ -1,6 +1,6 @@
 import React from 'react';
-import { Logo } from '../logo/logo';
-import styles from './header.module.css';
+import { Logo } from '../../../assets/logo/Logo';
+import styles from './Header.module.css';
 
 export interface MenuItem {
   title: string;

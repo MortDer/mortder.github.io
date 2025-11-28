@@ -1,6 +1,6 @@
 import React from 'react';
-import { Operation } from '../../../homeworks/ts1/3_write';
-import styles from './operation-detail.module.css';
+import { Operation } from 'src/utils/operation';
+import styles from './OperationDetail.module.css';
 
 export const OperationDetail: React.FC<Operation> = ({ name, desc, amount, category, type, createdAt }) => {
   const formatDate = (dateString: string) => {

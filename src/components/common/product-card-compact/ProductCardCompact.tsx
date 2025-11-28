@@ -1,7 +1,7 @@
 import React from 'react';
-import { Product } from '../../../homeworks/ts1/3_write';
-import { AddToCart } from '../button/add-to-cart/add-to-cart';
-import styles from './product-card-compact.module.css';
+import { Product } from 'src/utils/product';
+import { AddToCart } from '../button/add-to-cart/AddToCart';
+import styles from './ProductCardCompact.module.css';
 
 export const ProductCardCompact: React.FC<Product> = ({ name, desc, price, oldPrice, photo }) => {
   const truncateDescription = (text: string, maxLength = 40) => {

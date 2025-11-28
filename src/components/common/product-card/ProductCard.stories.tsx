@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ProductCard } from './product-card';
-import { createRandomProduct } from '../../../homeworks/ts1/3_write';
+import { ProductCard } from './ProductCard';
+import { createRandomProduct } from 'src/utils/product';
 
 const meta: Meta<typeof ProductCard> = {
   title: 'Common/ProductCard',

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { AddToCart } from './add-to-cart';
+import { AddToCart } from './AddToCart';
 
 const meta: Meta<typeof AddToCart> = {
   title: 'Common/AddToCart',
