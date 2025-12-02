@@ -21,9 +21,9 @@ type Story = StoryObj<typeof Header>;
 export const Default: Story = {
   args: {
     menuItems: [
-      { title: 'Главная', navTo: '#' },
-      { title: 'О нас', navTo: '#' },
-      { title: 'Контакты', navTo: '#' },
+      { id: 'main', title: 'Главная', navTo: '#' },
+      { id: 'about', title: 'О нас', navTo: '#' },
+      { id: 'contacts', title: 'Контакты', navTo: '#' },
     ],
   },
 };

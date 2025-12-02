@@ -1,8 +1,10 @@
 import React from 'react';
-import { Logo } from '../../../assets/logo/Logo';
+import { Logo } from 'src/assets/logo/Logo';
 import styles from './Header.module.css';
+import { HeaderNavItem } from './HeaderNavItem';
 
 export interface MenuItem {
+  id: string;
   title: string;
   navTo: string;
 }
@@ -17,10 +19,8 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
       <div className={styles.container}>
         <Logo size="medium" />
         <nav className={styles.nav}>
-          {menuItems.map((item, index) => (
-            <a key={index} href={item.navTo} className={styles.navLink}>
-              {item.title}
-            </a>
+          {menuItems.map((item) => (
+            <HeaderNavItem key={item.id} title={item.title} navTo={item.navTo} />
           ))}
         </nav>
       </div>
