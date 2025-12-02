@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from 'src/utils/product';
 import { AddToCart } from '../button/add-to-cart/AddToCart';
+import { PriceBlock } from '../price-block/PriceBlock';
 import styles from './ProductCard.module.css';
 
 export const ProductCard: React.FC<Product> = ({ name, desc, price, oldPrice, photo, category }) => {
@@ -15,8 +16,7 @@ export const ProductCard: React.FC<Product> = ({ name, desc, price, oldPrice, ph
             <span className={styles.categoryName}>{category.name}</span>
           </div>
           <div className={styles.priceContainer}>
-            {oldPrice && <span className={styles.oldPrice}>{oldPrice.toFixed(2)} ₽</span>}
-            <span className={styles.price}>{price.toFixed(2)} ₽</span>
+            <PriceBlock price={price} oldPrice={oldPrice} />
           </div>
         </div>
         <h3 className={styles.name}>{name}</h3>
