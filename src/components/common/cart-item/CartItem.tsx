@@ -2,9 +2,9 @@ import React from 'react';
 import { Product } from 'src/utils/product';
 import styles from './CartItem.module.css';
 
-interface CartItemProps extends Product {
+type CartItemProps = Pick<Product, 'name' | 'photo'> & {
   onRemove?: () => void;
-}
+};
 
 export const CartItem: React.FC<CartItemProps> = ({ name, photo, onRemove }) => {
   return (

@@ -22,7 +22,7 @@ export const ProductCardCompact: React.FC<Product> = ({ name, desc, price, oldPr
           <div className={styles.priceContainer}>
             <PriceBlock price={price} oldPrice={oldPrice} />
           </div>
-            <AddToCart count={0} />
+          <AddToCart count={0} />
         </div>
       </div>
     </div>
