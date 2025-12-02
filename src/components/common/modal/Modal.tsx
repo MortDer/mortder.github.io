@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Modal.module.css';
+import { createPortal } from 'react-dom';
 
 interface ModalProps {
   visible: boolean;
@@ -11,7 +12,11 @@ export const Modal: React.FC<ModalProps> = ({ visible, children }) => {
     return null;
   }
 
-  return (
+  if (typeof document === 'undefined') {
+    return null;
+  }
+
+  return createPortal(
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <button className={styles.closeButton} type="button">
@@ -19,6 +24,7 @@ export const Modal: React.FC<ModalProps> = ({ visible, children }) => {
         </button>
         <div className={styles.content}>{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
