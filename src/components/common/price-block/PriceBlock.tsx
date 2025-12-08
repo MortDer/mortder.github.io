@@ -6,7 +6,7 @@ export interface PriceBlockProps {
   oldPrice?: number;
 }
 
-export const PriceBlock: React.FC<PriceBlockProps> = ({ price, oldPrice }) => {
+const PriceBlockComponent: React.FC<PriceBlockProps> = ({ price, oldPrice }) => {
   return (
     <div className={styles.priceContainer}>
       {oldPrice != null && <span className={styles.oldPrice}>{oldPrice.toFixed(2)} ₽</span>}
@@ -14,3 +14,5 @@ export const PriceBlock: React.FC<PriceBlockProps> = ({ price, oldPrice }) => {
     </div>
   );
 };
+
+export const PriceBlock = React.memo(PriceBlockComponent);

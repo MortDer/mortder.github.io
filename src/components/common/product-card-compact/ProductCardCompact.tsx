@@ -4,7 +4,7 @@ import { AddToCart } from '../button/add-to-cart/AddToCart';
 import { PriceBlock } from '../price-block/PriceBlock';
 import styles from './ProductCardCompact.module.css';
 
-export const ProductCardCompact: React.FC<Product> = ({ name, desc, price, oldPrice, photo }) => {
+const ProductCardCompactComponent: React.FC<Product> = ({ name, desc, price, oldPrice, photo }) => {
   const truncateDescription = (text: string, maxLength = 40) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
@@ -28,3 +28,5 @@ export const ProductCardCompact: React.FC<Product> = ({ name, desc, price, oldPr
     </div>
   );
 };
+
+export const ProductCardCompact = React.memo(ProductCardCompactComponent);

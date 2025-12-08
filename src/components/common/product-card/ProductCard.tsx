@@ -4,7 +4,7 @@ import { AddToCart } from '../button/add-to-cart/AddToCart';
 import { PriceBlock } from '../price-block/PriceBlock';
 import styles from './ProductCard.module.css';
 
-export const ProductCard: React.FC<Product> = ({ name, desc, price, oldPrice, photo, category }) => {
+const ProductCardComponent: React.FC<Product> = ({ name, desc, price, oldPrice, photo, category }) => {
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
@@ -26,3 +26,5 @@ export const ProductCard: React.FC<Product> = ({ name, desc, price, oldPrice, ph
     </div>
   );
 };
+
+export const ProductCard = React.memo(ProductCardComponent);
