@@ -2,12 +2,12 @@ import React from 'react';
 import { Operation } from 'src/utils/operation';
 import styles from './OperationCard.module.css';
 
-export const OperationCard: React.FC<Operation> = ({ name, desc, amount, category, type }) => {
-  const truncateDescription = (text: string, maxLength = 50) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + '...';
-  };
+const truncateDescription = (text: string, maxLength = 50) => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
+};
 
+const OperationCardComponent: React.FC<Operation> = ({ name, desc, amount, category, type }) => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -26,3 +26,5 @@ export const OperationCard: React.FC<Operation> = ({ name, desc, amount, categor
     </div>
   );
 };
+
+export const OperationCard = React.memo(OperationCardComponent);
