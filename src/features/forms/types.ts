@@ -6,6 +6,6 @@ export interface FormProps<Values = unknown> {
   className?: string;
   disabled?: boolean;
   formManager: FormikContextType<Values>;
-  formElement?: MutableRefObject<HTMLFormElement>;
-  autoFocusElement?: MutableRefObject<InputRef>;
+  formElement?: MutableRefObject<HTMLFormElement | null>;
+  autoFocusElement?: MutableRefObject<InputRef | null>;
 }

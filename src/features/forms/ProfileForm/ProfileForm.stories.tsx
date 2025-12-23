@@ -1,12 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { useFormik } from 'formik';
-import { ProfileForm } from './ProfileForm';
-import { ProfileFormValues } from './types';
+import { ProfileFormFormik } from './ProfileFormFormik';
 
-const meta: Meta<typeof ProfileForm> = {
+const meta: Meta<typeof ProfileFormFormik> = {
   title: 'Features/Forms/ProfileForm',
-  component: ProfileForm,
+  component: ProfileFormFormik,
   parameters: {
     layout: 'padded',
   },
@@ -25,50 +23,9 @@ const meta: Meta<typeof ProfileForm> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type FormWrapperProps = {
-  disabled?: boolean;
-  className?: string;
-  submitOnMount?: boolean;
-  initialValues?: ProfileFormValues;
-};
-
-const FormWrapper: React.FC<FormWrapperProps> = ({ disabled, className, submitOnMount, initialValues }) => {
-  const validate = useMemo(
-    () => (values: ProfileFormValues) => {
-      const errors: Partial<Record<keyof ProfileFormValues, string>> = {};
-
-      if (!values.name?.trim()) {
-        errors.name = 'Обязательное поле';
-      }
-
-      if (!values.about?.trim()) {
-        errors.about = 'Обязательное поле';
-      }
-
-      return errors;
-    },
-    []
-  );
-
-  const formik = useFormik<ProfileFormValues>({
-    initialValues: initialValues ?? { name: '', about: '' },
-    initialTouched: submitOnMount ? { name: true, about: true } : undefined,
-    validate,
-    onSubmit: () => undefined,
-  });
-
-  useEffect(() => {
-    if (!submitOnMount) return;
-    formik.submitForm();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [submitOnMount]);
-
-  return <ProfileForm className={className} disabled={disabled} formManager={formik} />;
-};
-
 export const Default: Story = {
   render: (args) => (
-    <FormWrapper
+    <ProfileFormFormik
       disabled={args.disabled}
       className={args.className}
       initialValues={{ name: 'mortder', about: 'Люблю React и TypeScript' }}
@@ -77,17 +34,15 @@ export const Default: Story = {
 };
 
 export const EmptyWithErrors: Story = {
-  render: (args) => <FormWrapper disabled={args.disabled} className={args.className} submitOnMount />,
+  render: (args) => <ProfileFormFormik disabled={args.disabled} className={args.className} submitOnMount />,
 };
 
 export const Disabled: Story = {
   render: (args) => (
-    <FormWrapper
+    <ProfileFormFormik
       disabled
       className={args.className}
       initialValues={{ name: 'mortder', about: 'Форма в disabled состоянии' }}
     />
   ),
 };
-
-
