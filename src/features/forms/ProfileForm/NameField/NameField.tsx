@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { FormItem } from 'src/shared/ui/FormItem';
 import { getValidates } from 'src/utils/validation';
 import { ProfileFormProps } from '../types';
-import s from './NameField.sass';
+import s from './NameField.module.sass';
 
 export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
   submitCount: number;

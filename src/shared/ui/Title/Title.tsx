@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import cn from 'clsx';
-import s from './Title.sass';
+import s from './Title.module.sass';
 
 export type TitleProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import cn from 'clsx';
 import { Form } from 'antd';
 import { Title } from 'src/shared/ui/Title';
-import s from './FormItem.sass';
+import s from './FormItem.module.sass';
 
 export type Help = null | React.ReactNode;
 export type ValidateStatus = 'error' | '';

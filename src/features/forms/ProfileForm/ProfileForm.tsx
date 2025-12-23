@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import cn from 'clsx';
 import { ProfileFormProps } from './types';
 import { NameField } from './NameField';
-import s from './ProfileForm.sass';
+import s from './ProfileForm.module.sass';
 import { AboutField } from './AboutField';
 
 export const ProfileForm = memo<ProfileFormProps>(

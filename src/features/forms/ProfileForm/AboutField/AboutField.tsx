@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { FormItem } from 'src/shared/ui/FormItem';
 import { getValidates } from 'src/utils/validation';
 import { ProfileFormProps } from '../types';
-import s from './AboutField.sass';
+import s from './AboutField.module.sass';
 
 export type AboutFieldProps = Pick<ProfileFormProps, 'className' | 'disabled'> & {
   submitCount: number;
