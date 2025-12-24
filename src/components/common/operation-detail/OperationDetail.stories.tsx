@@ -39,6 +39,10 @@ const meta: Meta<typeof OperationDetail> = {
       options: ['Cost', 'Profit'],
       description: 'Тип операции',
     },
+    onEdit: {
+      action: 'edit',
+      description: 'Обработчик клика по кнопке "Редактировать"',
+    },
   },
 };
 
