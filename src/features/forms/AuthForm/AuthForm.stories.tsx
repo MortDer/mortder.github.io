@@ -10,12 +10,21 @@ const meta: Meta<typeof AuthFormFormik> = {
     layout: 'padded',
   },
   argTypes: {
+    className: {
+      table: { disable: true },
+    },
+    onSubmit: {
+      table: { disable: true },
+    },
     disabled: {
       control: 'boolean',
     },
     mode: {
       control: 'radio',
       options: [AuthMode.signIn, AuthMode.signUp],
+    },
+    initialValues: {
+      table: { disable: true },
     },
   },
 };
