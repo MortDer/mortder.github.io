@@ -2,7 +2,11 @@ import React from 'react';
 import { Operation } from 'src/utils/operation';
 import styles from './OperationDetail.module.css';
 
-export const OperationDetail: React.FC<Operation> = ({ name, desc, amount, category, type, createdAt }) => {
+export type OperationDetailProps = Operation & {
+  onEdit?: () => void;
+};
+
+export const OperationDetail: React.FC<OperationDetailProps> = ({ name, desc, amount, category, type, createdAt, onEdit }) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('ru-RU', {
@@ -34,7 +38,7 @@ export const OperationDetail: React.FC<Operation> = ({ name, desc, amount, categ
       </div>
 
       <div className={styles.actions}>
-        <button className={styles.editButton} type="button">
+        <button className={styles.editButton} type="button" onClick={onEdit}>
           Редактировать
         </button>
       </div>

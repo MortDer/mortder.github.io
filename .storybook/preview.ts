@@ -1,4 +1,7 @@
-import type { Preview } from "@storybook/react";
+import 'antd/dist/reset.css';
+import 'src/app/localization';
+
+import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
   parameters: {

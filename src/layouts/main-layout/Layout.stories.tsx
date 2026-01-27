@@ -26,9 +26,9 @@ type Story = StoryObj<typeof Layout>;
 export const Default: Story = {
   args: {
     menuItems: [
-      { title: 'Главная', navTo: '#' },
-      { title: 'О нас', navTo: '#' },
-      { title: 'Контакты', navTo: '#' },
+      { id: 'home', title: 'Главная', navTo: '#' },
+      { id: 'about', title: 'О нас', navTo: '#' },
+      { id: 'contacts', title: 'Контакты', navTo: '#' },
     ],
     mainContent: (
       <div style={{ padding: '40px 20px', maxWidth: '800px', margin: '0 auto' }}>
@@ -42,9 +42,9 @@ export const Default: Story = {
 export const WithLongContent: Story = {
   args: {
     menuItems: [
-      { title: 'Главная', navTo: '#' },
-      { title: 'О нас', navTo: '#' },
-      { title: 'Контакты', navTo: '#' },
+      { id: 'home', title: 'Главная', navTo: '#' },
+      { id: 'about', title: 'О нас', navTo: '#' },
+      { id: 'contacts', title: 'Контакты', navTo: '#' },
     ],
     mainContent: (
       <div style={{ padding: '40px 20px', maxWidth: '800px', margin: '0 auto' }}>
