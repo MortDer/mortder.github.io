@@ -1,0 +1,34 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  align-items: start;
+}
+
+.item {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 8px;
+  min-width: 0;
+}
+
+.editButton {
+  width: 100%;
+  border: 1px solid #667eea;
+  background: #ffffff;
+  color: #667eea;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  background: #f4f6ff;
+}
+
+@media (max-width: 768px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+}
