@@ -1,0 +1,67 @@
+.page {
+  padding: 24px;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 0 0 20px;
+  color: #666666;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.primaryButton {
+  border: 1px solid #667eea;
+  background: #667eea;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 9px 14px;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background: #5368d8;
+}
+
+.modalTitle {
+  margin: 0 0 12px;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  color: #444444;
+  font-size: 14px;
+}
+
+.input {
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
