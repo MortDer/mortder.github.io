@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { MenuItem } from 'src/components/common/header/Header';
 import { Layout } from 'src/layouts/main-layout/Layout';
 import { CartPage } from 'src/pages/CartPage';
@@ -18,7 +18,7 @@ const AppLayout: React.FC = () => <Layout menuItems={menuItems} mainContent={<Ou
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Navigate to="/profile" replace />} />
@@ -29,7 +29,7 @@ function App() {
           <Route path="*" element={<Navigate to="/profile" replace />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
