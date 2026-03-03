@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Product } from 'src/utils/product';
 import { ProductCard } from '../common/product-card/ProductCard';
 import styles from './ProductsList.module.css';
@@ -9,7 +9,7 @@ export type ProductsListProps = {
   onEditProduct?: (product: Product) => void;
 };
 
-export const ProductsList: React.FC<ProductsListProps> = ({ products, onEndReached, onEditProduct }) => {
+export const ProductsList: FC<ProductsListProps> = ({ products, onEndReached, onEditProduct }) => {
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

@@ -11,7 +11,15 @@ export const CartPage: React.FC = () => {
   const [cartProducts, setCartProducts] = useState<Product[]>(initialCartProducts);
 
   const onRemoveProduct = (productId: string) => {
-    setCartProducts((prev) => prev.filter((product) => product.id !== productId));
+    setCartProducts((prev) => {
+      const productIndex = prev.findIndex((product) => product.id === productId);
+
+      if (productIndex < 0) {
+        return prev;
+      }
+
+      return [...prev.slice(0, productIndex), ...prev.slice(productIndex + 1)];
+    });
   };
 
   return (

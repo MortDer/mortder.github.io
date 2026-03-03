@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Modal } from 'src/components/common/modal/Modal';
 import { ProductsList } from 'src/components/productsList/ProductsList';
 import { Product, createRandomProduct } from 'src/utils/product';
@@ -29,12 +30,16 @@ export const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [formValues, setFormValues] = useState<ProductFormValues>(EMPTY_PRODUCT_FORM);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isModalVisible = searchParams.has('modal');
 
   const openCreateModal = () => {
     setEditingProduct(null);
     setFormValues(EMPTY_PRODUCT_FORM);
-    setIsModalVisible(true);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('modal', 'create');
+    nextParams.delete('productId');
+    setSearchParams(nextParams);
   };
 
   const openEditModal = (product: Product) => {
@@ -46,10 +51,18 @@ export const ProductsPage: React.FC = () => {
       categoryName: product.category.name,
       photo: product.photo,
     });
-    setIsModalVisible(true);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('modal', 'edit');
+    nextParams.set('productId', product.id);
+    setSearchParams(nextParams);
   };
 
-  const closeModal = () => setIsModalVisible(false);
+  const closeModal = () => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete('modal');
+    nextParams.delete('productId');
+    setSearchParams(nextParams);
+  };
 
   const onFormFieldChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;

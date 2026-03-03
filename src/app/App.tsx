@@ -1,11 +1,8 @@
 import React from 'react';
-import { HashRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { MenuItem } from 'src/components/common/header/Header';
+import { AppRouter } from './AppRouter';
 import { Layout } from 'src/layouts/main-layout/Layout';
-import { CartPage } from 'src/pages/CartPage';
-import { OperationsPage } from 'src/pages/OperationsPage';
-import { ProductsPage } from 'src/pages/ProductsPage';
-import { ProfilePage } from 'src/pages/ProfilePage';
 
 const menuItems: MenuItem[] = [
   { id: 'profile', title: 'Профиль', navTo: '/profile' },
@@ -17,20 +14,7 @@ const menuItems: MenuItem[] = [
 const AppLayout: React.FC = () => <Layout menuItems={menuItems} mainContent={<Outlet />} />;
 
 function App() {
-  return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<Navigate to="/profile" replace />} />
-          <Route path="profile" element={<ProfilePage />} />
-          <Route path="products" element={<ProductsPage />} />
-          <Route path="operations" element={<OperationsPage />} />
-          <Route path="cart" element={<CartPage />} />
-          <Route path="*" element={<Navigate to="/profile" replace />} />
-        </Route>
-      </Routes>
-    </HashRouter>
-  );
+  return <AppRouter layout={<AppLayout />} />;
 }
 
 export default App;

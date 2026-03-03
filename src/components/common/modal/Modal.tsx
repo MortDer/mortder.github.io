@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 interface ModalProps {
   visible: boolean;
   children: React.ReactNode;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 export const Modal: React.FC<ModalProps> = ({ visible, children, onClose }) => {
@@ -23,7 +23,7 @@ export const Modal: React.FC<ModalProps> = ({ visible, children, onClose }) => {
       onClick={onClose}
       onKeyDown={(event) => {
         if (event.key === 'Escape') {
-          onClose?.();
+          onClose();
         }
       }}
       role="button"

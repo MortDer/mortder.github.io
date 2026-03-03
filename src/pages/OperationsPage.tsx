@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Modal } from 'src/components/common/modal/Modal';
 import { OperationsList } from 'src/components/operationsList/OperationsList';
 import { OperationEditFormFormik } from 'src/features/forms/OperationForm/OperationEditFormFormik';
@@ -14,18 +15,30 @@ export const OperationsPage: React.FC = () => {
   );
   const [operations, setOperations] = useState<Operation[]>(initialOperations);
   const [editingOperation, setEditingOperation] = useState<Operation | null>(null);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isModalVisible = searchParams.has('modal');
 
-  const closeModal = () => setIsModalVisible(false);
+  const closeModal = () => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete('modal');
+    nextParams.delete('operationId');
+    setSearchParams(nextParams);
+  };
 
   const openCreateModal = () => {
     setEditingOperation(null);
-    setIsModalVisible(true);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('modal', 'create');
+    nextParams.delete('operationId');
+    setSearchParams(nextParams);
   };
 
   const openEditModal = (operation: Operation) => {
     setEditingOperation(operation);
-    setIsModalVisible(true);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('modal', 'edit');
+    nextParams.set('operationId', operation.id);
+    setSearchParams(nextParams);
   };
 
   const onSubmit = async (values: OperationFormValues) => {
@@ -66,9 +79,7 @@ export const OperationsPage: React.FC = () => {
       <OperationsList operations={operations} onEditOperation={openEditModal} />
 
       <Modal visible={isModalVisible} onClose={closeModal}>
-        <h3 className={styles.modalTitle}>
-          {editingOperation ? 'Редактирование операции' : 'Создание операции'}
-        </h3>
+        <h3 className={styles.modalTitle}>{editingOperation ? 'Редактирование операции' : 'Создание операции'}</h3>
         <OperationEditFormFormik mode={mode} initialOperation={editingOperation ?? undefined} onSubmit={onSubmit} />
       </Modal>
     </section>
