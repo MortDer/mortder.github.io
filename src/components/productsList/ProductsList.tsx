@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Product } from 'src/utils/product';
 import { ProductCard } from '../common/product-card/ProductCard';
 import styles from './ProductsList.module.css';
@@ -6,9 +6,10 @@ import styles from './ProductsList.module.css';
 export type ProductsListProps = {
   products: Product[];
   onEndReached?: () => void;
+  onEditProduct?: (product: Product) => void;
 };
 
-export const ProductsList: React.FC<ProductsListProps> = ({ products, onEndReached }) => {
+export const ProductsList: FC<ProductsListProps> = ({ products, onEndReached, onEditProduct }) => {
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -41,7 +42,14 @@ export const ProductsList: React.FC<ProductsListProps> = ({ products, onEndReach
   return (
     <div className={styles.list}>
       {products.map((product) => (
-        <ProductCard key={product.id} {...product} />
+        <div key={product.id} className={styles.item}>
+          <ProductCard {...product} />
+          {onEditProduct && (
+            <button type="button" className={styles.editButton} onClick={() => onEditProduct(product)}>
+              Редактировать
+            </button>
+          )}
+        </div>
       ))}
       {onEndReached && <div ref={loaderRef} style={{ height: 1 }} />}
     </div>

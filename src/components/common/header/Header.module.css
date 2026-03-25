@@ -35,6 +35,10 @@
   color: #667eea;
 }
 
+.navLinkActive {
+  color: #667eea;
+}
+
 .navLink::after {
   content: '';
   position: absolute;
@@ -47,6 +51,10 @@
 }
 
 .navLink:hover::after {
+  width: 100%;
+}
+
+.navLinkActive::after {
   width: 100%;
 }
 
