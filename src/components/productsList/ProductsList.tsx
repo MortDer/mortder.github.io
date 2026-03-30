@@ -7,9 +7,21 @@ export type ProductsListProps = {
   products: Product[];
   onEndReached?: () => void;
   onEditProduct?: (product: Product) => void;
+  onAddToCart?: (product: Product) => void;
+  onRemoveFromCart?: (productId: string) => void;
+  cartProductIds?: string[];
+  canEditProducts?: boolean;
 };
 
-export const ProductsList: FC<ProductsListProps> = ({ products, onEndReached, onEditProduct }) => {
+export const ProductsList: FC<ProductsListProps> = ({
+  products,
+  onEndReached,
+  onEditProduct,
+  onAddToCart,
+  onRemoveFromCart,
+  cartProductIds = [],
+  canEditProducts = false,
+}) => {
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -43,8 +55,13 @@ export const ProductsList: FC<ProductsListProps> = ({ products, onEndReached, on
     <div className={styles.list}>
       {products.map((product) => (
         <div key={product.id} className={styles.item}>
-          <ProductCard {...product} />
-          {onEditProduct && (
+          <ProductCard
+            {...product}
+            cartCount={cartProductIds.includes(product.id) ? 1 : 0}
+            onAddToCart={onAddToCart ? () => onAddToCart(product) : undefined}
+            onRemoveFromCart={onRemoveFromCart ? () => onRemoveFromCart(product.id) : undefined}
+          />
+          {onEditProduct && canEditProducts && (
             <button type="button" className={styles.editButton} onClick={() => onEditProduct(product)}>
               Редактировать
             </button>
