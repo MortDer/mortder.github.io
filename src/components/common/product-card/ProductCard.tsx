@@ -4,7 +4,23 @@ import { AddToCart } from '../button/add-to-cart/AddToCart';
 import { PriceBlock } from '../price-block/PriceBlock';
 import styles from './ProductCard.module.css';
 
-const ProductCardComponent: React.FC<Product> = ({ name, desc, price, oldPrice, photo, category }) => {
+type ProductCardProps = Product & {
+  cartCount?: number;
+  onAddToCart?: () => void;
+  onRemoveFromCart?: () => void;
+};
+
+const ProductCardComponent: React.FC<ProductCardProps> = ({
+  name,
+  desc,
+  price,
+  oldPrice,
+  photo,
+  category,
+  cartCount = 0,
+  onAddToCart,
+  onRemoveFromCart,
+}) => {
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
@@ -21,7 +37,7 @@ const ProductCardComponent: React.FC<Product> = ({ name, desc, price, oldPrice, 
         </div>
         <h3 className={styles.name}>{name}</h3>
         {desc && <p className={styles.description}>{desc}</p>}
-        <AddToCart count={0} />
+        <AddToCart count={cartCount} onAdd={onAddToCart} onIncrease={onAddToCart} onDecrease={onRemoveFromCart} />
       </div>
     </div>
   );

@@ -1,8 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Modal } from 'src/components/common/modal/Modal';
 import { ProductsList } from 'src/components/productsList/ProductsList';
-import { Product, createRandomProduct } from 'src/utils/product';
+import { useAppDispatch, useAppSelector } from 'src/store';
+import { selectCartProducts, selectIsAdmin, selectProducts } from 'src/store/selectors';
+import { addToCart, removeFromCart } from 'src/store/slices/cartSlice';
+import { addProduct, updateProduct } from 'src/store/slices/productsSlice';
+import { Product } from 'src/utils/product';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './Pages.module.css';
 
@@ -23,17 +27,32 @@ const EMPTY_PRODUCT_FORM: ProductFormValues = {
 };
 
 export const ProductsPage: React.FC = () => {
-  const initialProducts = useMemo(
-    () => Array.from({ length: 6 }, () => createRandomProduct(new Date().toISOString())),
-    []
-  );
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(selectProducts);
+  const cartProducts = useAppSelector(selectCartProducts);
+  const isAdmin = useAppSelector(selectIsAdmin);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [formValues, setFormValues] = useState<ProductFormValues>(EMPTY_PRODUCT_FORM);
   const [searchParams, setSearchParams] = useSearchParams();
-  const isModalVisible = searchParams.has('modal');
+  const isModalVisible = isAdmin && searchParams.has('modal');
+  const cartProductIds = cartProducts.map((product) => product.id);
+
+  useEffect(() => {
+    if (isAdmin || !searchParams.has('modal')) {
+      return;
+    }
+
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete('modal');
+    nextParams.delete('productId');
+    setSearchParams(nextParams);
+  }, [isAdmin, searchParams, setSearchParams]);
 
   const openCreateModal = () => {
+    if (!isAdmin) {
+      return;
+    }
+
     setEditingProduct(null);
     setFormValues(EMPTY_PRODUCT_FORM);
     const nextParams = new URLSearchParams(searchParams);
@@ -43,6 +62,10 @@ export const ProductsPage: React.FC = () => {
   };
 
   const openEditModal = (product: Product) => {
+    if (!isAdmin) {
+      return;
+    }
+
     setEditingProduct(product);
     setFormValues({
       name: product.name,
@@ -92,27 +115,44 @@ export const ProductsPage: React.FC = () => {
       },
     };
 
-    setProducts((prev) => {
-      if (!editingProduct) {
-        return [nextProduct, ...prev];
-      }
-
-      return prev.map((product) => (product.id === editingProduct.id ? nextProduct : product));
-    });
+    if (!editingProduct) {
+      dispatch(addProduct(nextProduct));
+    } else {
+      dispatch(updateProduct(nextProduct));
+    }
     closeModal();
+  };
+
+  const onAddProductToCart = (product: Product) => {
+    dispatch(addToCart(product));
+  };
+
+  const onRemoveProductFromCart = (productId: string) => {
+    dispatch(removeFromCart(productId));
   };
 
   return (
     <section className={styles.page}>
       <div className={styles.topBar}>
         <h1 className={styles.title}>Товары</h1>
-        <button type="button" className={styles.primaryButton} onClick={openCreateModal}>
-          Добавить товар
-        </button>
+        {isAdmin && (
+          <button type="button" className={styles.primaryButton} onClick={openCreateModal}>
+            Добавить товар
+          </button>
+        )}
       </div>
-      <p className={styles.subtitle}>Список товаров и модальное окно для создания и редактирования.</p>
+      <p className={styles.subtitle}>
+        Список товаров в Redux. Добавление/редактирование через модальное окно доступно только администратору.
+      </p>
 
-      <ProductsList products={products} onEditProduct={openEditModal} />
+      <ProductsList
+        products={products}
+        onEditProduct={openEditModal}
+        onAddToCart={onAddProductToCart}
+        onRemoveFromCart={onRemoveProductFromCart}
+        cartProductIds={cartProductIds}
+        canEditProducts={isAdmin}
+      />
 
       <Modal visible={isModalVisible} onClose={closeModal}>
         <h3 className={styles.modalTitle}>{editingProduct ? 'Редактирование товара' : 'Создание товара'}</h3>
